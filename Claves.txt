@@ -1,0 +1,10 @@
+Apache Tomcat
+admin
+1234
+
+Base de datos
+agencia_turismo
+root
+-
+
+ASUMO QUE LOS PAQUETES SE ARMAN EN EL MOMENTO PARA EL CLIENTE
