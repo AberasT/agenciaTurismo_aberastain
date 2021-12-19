@@ -118,6 +118,14 @@ h2 {
     padding: 0;
 }
 
+.color-negro {
+    color: black;
+}
+
+.contenedor-selectores {
+    align-items: center;
+}
+
 /* EFECTOS */
 
 a:hover {

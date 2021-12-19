@@ -17,7 +17,9 @@
         <div id="barra-menu" class="flex-columna">
             <a href="index.jsp" class="boton-menu seleccionado">INICIO</a>
             <a href="usuario.jsp" class="boton-menu">USUARIO</a>
-            <a href="ventas.jsp" class="boton-menu">VENTAS</a>
+            <form action="SvVerVentas" method="GET">
+                <a href="SvVerVentas" class="boton-menu">VENTAS</a>
+            </form>
             <form action="SvVerServicios" method="GET">
                 <a href="SvVerServicios" class="boton-menu">SERVICIOS</a>
             </form>

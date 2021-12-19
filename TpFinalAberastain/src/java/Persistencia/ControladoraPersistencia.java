@@ -5,6 +5,8 @@ import Logica.Empleado;
 import Logica.Paquete;
 import Logica.Servicio;
 import Logica.Usuario;
+import Logica.Venta;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +19,7 @@ public class ControladoraPersistencia {
     ClienteJpaController clienteJpa = new ClienteJpaController();
     ServicioJpaController servicioJpa = new ServicioJpaController();
     PaqueteJpaController paqueteJpa = new PaqueteJpaController();
+    VentaJpaController ventaJpa = new VentaJpaController();
     
     public void crearEmpleado(Empleado empleado, Usuario usuario) {
         empleadoJpa.create(empleado);
@@ -124,6 +127,28 @@ public class ControladoraPersistencia {
         try {
             paqueteJpa.edit(paq);
         } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // VENTAS
+
+    public List<Venta> traerVentas() {
+        return ventaJpa.findVentaEntities();
+    }
+
+    public void crearVenta(Venta ven) {
+        ventaJpa.create(ven);
+    }
+
+    public Venta buscarVenta(int id) {
+        return ventaJpa.findVenta(id);
+    }
+
+    public void eliminarVenta(int id) {
+        try {
+            ventaJpa.destroy(id);
+        } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

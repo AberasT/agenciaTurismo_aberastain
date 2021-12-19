@@ -205,5 +205,41 @@ public class ControladoraLogica {
         paq.setHabilitado(false);
         controlPersis.modificarPaquete(paq);
     }
+    
+    //VENTAS
+
+    public List<Venta> traerVentas() {
+        return controlPersis.traerVentas();
+    }
+
+    public void crearVenta(Paquete paqIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp) {
+        Venta ven = new Venta();
+        ven.setPaquete(paqIncluido);
+        ven.setMedio_pago(medioPago);
+        ven.setFecha_venta(fecha_venta);
+        ven.setCliente(cli);
+        ven.setUsuario(buscarUsuarioPorEmpleado(emp));
+        
+        controlPersis.crearVenta(ven);
+    }
+
+    public void crearVenta(Servicio serIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp) {
+        Venta ven = new Venta();
+        ven.setServicio(serIncluido);
+        ven.setMedio_pago(medioPago);
+        ven.setFecha_venta(fecha_venta);
+        ven.setCliente(cli);
+        ven.setUsuario(buscarUsuarioPorEmpleado(emp));
+        
+        controlPersis.crearVenta(ven);
+    }
+
+    public void eliminarVenta(int id) {
+        controlPersis.eliminarVenta(id);
+    }
+
+    private Venta buscarVenta(int id) {
+        return controlPersis.buscarVenta(id);
+    }
 
 }

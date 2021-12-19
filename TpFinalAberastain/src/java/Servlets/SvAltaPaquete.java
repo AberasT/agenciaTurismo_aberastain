@@ -3,7 +3,6 @@ package Servlets;
 import Logica.ControladoraLogica;
 import Logica.Servicio;
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -60,7 +59,6 @@ public class SvAltaPaquete extends HttpServlet {
             controladora.crearPaquete(listaServiciosIncluidos,costoTotal);
             response.sendRedirect("alta_ok.jsp");
         }
-
     }
     @Override
     public String getServletInfo() {

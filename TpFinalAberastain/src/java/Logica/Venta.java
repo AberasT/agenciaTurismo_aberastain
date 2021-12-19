@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -15,7 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Venta {
+public class Venta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int num_venta;
@@ -96,7 +92,4 @@ public class Venta {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-
-    
 }
