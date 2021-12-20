@@ -1,10 +1,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="Logica.Venta"%>
 <%@page import="Logica.Servicio"%>
-<%@page import="Logica.Paquete"%>
 <%@page import="Logica.Cliente"%>
+<%@page import="Logica.Venta"%>
 <%@page import="Logica.Empleado"%>
-<%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,12 +37,12 @@
             <div>
                 <div class="limiter">
                     <div class="container-table100">
-                        <form class="wrap-table100" action="SvModificarVentaPaquete" method="GET">
+                        <form class="wrap-table100" action="SvModificarVentaServicio" method="GET">
                             <div class="table100 ver1">
                                 <div class="table100-firstcol">
                                     <table>
                                         <thead>
-                                                <th class="column1">Paquetes disponibles</th>
+                                                <th class="column1">Servicios disponibles</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,13 +50,13 @@
                                                 List <Cliente> listaClientes = (List) miSesion.getAttribute("listaClientes");
                                                 List <Empleado> listaEmpleados = (List) miSesion.getAttribute("listaEmpleados");
                                                 Venta venta = (Venta) miSesion.getAttribute("venta");
-                                                List <Paquete> listaPaquetes = (List) miSesion.getAttribute("listaPaquetes");
+                                                List <Servicio> listaServicios = (List) miSesion.getAttribute("listaServicios");
                                                 
-                                                for (Paquete paq : listaPaquetes) {
-                                                    if (paq.isHabilitado()) {
+                                                for (Servicio ser : listaServicios) {
+                                                    if (ser.isHabilitado()) {
                                             %>
                                             <tr class="row100 body">
-                                                <td class="column1"><%=paq.getCodigo_paquete()%></td>
+                                                <td class="column1"><%=ser.getCodigo()%></td>
                                             </tr>
                                             <% }} %>
                                         </tbody>
@@ -70,34 +68,36 @@
                                             <thead>
                                                 <tr class="row100 head">
                                                     <th class="column2">Incluir</th>
-                                                    <th class="column4">Código</th>
-                                                    <th class="listaElementos">Servicios incluidos</th>
+                                                    <th class="column10">Nombre</th>
+                                                    <th class="column7">Fecha de servicio</th>
+                                                    <th id="descripcion">Descripción</th>
+                                                    <th class="column10">Destino</th>
                                                     <th class="column12">Costo</th>
                                                 </tr>
                                             </thead>
                                                 <tbody>
-                                                <%  String serviciosString = "", checked;
-                                                    double costo;
-                                                    List<Servicio> listaServiciosIncluidos;
+                                                <%  String nombre, descripcion, destino, fechaString, checked;
                                                     int id;
-                                                    for (Paquete paq : listaPaquetes) { 
-                                                        if (paq.isHabilitado()) {%>
+                                                    double costo;
+                                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+                                                    for (Servicio ser : listaServicios) { 
+                                                        if (ser.isHabilitado()) {%>
                                                     <tr class="row100 body">
-                                                    <%  listaServiciosIncluidos = paq.getLista_servicios_incluidos();
+                                                    <%  id = ser.getCodigo();
+                                                        fechaString = sdf.format(ser.getFecha_servicio());
+                                                        descripcion = ser.getDescripcion_breve();
+                                                        destino = ser.getDestino_servicio();
+                                                        nombre = ser.getNombre();
+                                                        costo = ser.getCosto_servicio();
                                                         checked = "";
-                                                        id = paq.getCodigo_paquete();
-                                                        serviciosString = "";
-                                                        for (Servicio ser : listaServiciosIncluidos) {
-                                                                serviciosString += ser.getNombre() + ", ";
-                                                            }
-                                                        if (paq.getCodigo_paquete() == venta.getPaquete().getCodigo_paquete()) checked = "checked";
-                                                        serviciosString = serviciosString.substring(0,serviciosString.length()-2);
-                                                        costo = paq.getCosto_paquete(); %>
+                                                        if (ser.getCodigo() == venta.getServicio().getCodigo()) checked = "checked";%>
                                                         <td class="column2">
                                                             <input type="checkbox" class="checkbox" name="<%=id%>" value="<%=id%>" <%=checked%>>
                                                         </td>
-                                                        <td class="column4"><%=id%></td>
-                                                        <td class="listaElementos"><%=serviciosString%></td>
+                                                        <td class="column10"><%=nombre%></td>
+                                                        <td class="column7"><%=fechaString%></td>
+                                                        <td id="descripcion"><%=descripcion%></td>
+                                                        <td class="column10"><%=destino%></td>
                                                         <td class="column12">$<%=costo%></td>
                                                     </tr>
                                                     <%}}%>
@@ -149,7 +149,6 @@
                                     <% }} %>
                                     </select>
                                 </label>
-                                    <%  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
                                 <label class="color-negro">Seleccionar fecha<input type="date" name="fechaVenta" value="<%=sdf.format(venta.getFecha_venta())%>"></label>
                                 <input type="hidden" name="id" value="<%=venta.getNum_venta()%>">
                                 <button class="boton-submit" type="submit">MODIFICAR</button>

@@ -42,7 +42,6 @@
                         <form class="wrap-table100" action="SvModificarVentaPaquete" method="GET">
                             <div class="table100 ver1">
                                 <div class="table100-firstcol">
-
                                     <table>
                                         <thead>
                                                 <th class="column1">Paquetes disponibles</th>
@@ -76,7 +75,6 @@
                                                     <th class="column12">Costo</th>
                                                 </tr>
                                             </thead>
-                                            
                                                 <tbody>
                                                 <%  String serviciosString = "", checked;
                                                     double costo;
@@ -124,9 +122,7 @@
                                         <option value="transferencia" <%=selected%>>TRANSFERENCIA</option>
                                     </select>
                                 </label>
-
                                     <%  String nombreIdCli, nombreIdEmp; %>
-
                                 <label class="color-negro">Seleccionar cliente
                                     <select name="clienteId" class="selector">
                                     <<%  for (Cliente cli : listaClientes) {

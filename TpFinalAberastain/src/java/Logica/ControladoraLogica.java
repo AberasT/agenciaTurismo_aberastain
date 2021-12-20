@@ -253,4 +253,14 @@ public class ControladoraLogica {
         controlPersis.modificarVenta(ven);
     }
 
+    public void modificarVenta(int id, Servicio serIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp) {
+        Venta ven = buscarVenta(id);
+        ven.setServicio(serIncluido);
+        ven.setMedio_pago(medioPago);
+        ven.setFecha_venta(fecha_venta);
+        ven.setCliente(cli);
+        ven.setUsuario(buscarUsuarioPorEmpleado(emp));
+        
+        controlPersis.modificarVenta(ven);
+    }
 }

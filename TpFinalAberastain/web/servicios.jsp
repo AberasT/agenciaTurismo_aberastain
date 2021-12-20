@@ -91,7 +91,7 @@
                                                                     destino = ser.getDestino_servicio();
                                                                     nombre = ser.getNombre();
                                                                     costo = ser.getCosto_servicio(); %>
-                                                                    <td class="cell100 column2">
+                                                                    <td class="column2">
                                                                         <form name="formModificarServicio" action="SvModificarServicio" method="POST">
                                                                             <input type="hidden" name="id" value="<%=id%>">
                                                                             <button class="boton-tabla boton-modif">
@@ -99,7 +99,7 @@
                                                                             </button>
                                                                         </form>
                                                                     </td>
-                                                                    <td class="cell100 column3">
+                                                                    <td class="column3">
                                                                         <form name="formEliminarServicio" action="SvEliminarServicio" method="GET" onsubmit="return confirm('Eliminar servicio?')")>
                                                                             <input type="hidden" name="id" value="<%=id%>">
                                                                             <button type="submit" class="boton-tabla boton-elim">
@@ -107,12 +107,12 @@
                                                                             </button>
                                                                         </form>
                                                                     </td>
-                                                                    <td class="cell100 column4"><%=id%></td>
-                                                                    <td class="cell100 column10"><%=nombre%></td>
-                                                                    <td class="cell100 column7"><%=fechaString%></td>
-                                                                    <td class="cell100" id="descripcion"><%=descripcion%></td>
-                                                                    <td class="cell100 column10"><%=destino%></td>
-                                                                    <td class="cell100 column12">$<%=costo%></td>
+                                                                    <td class="column4"><%=id%></td>
+                                                                    <td class="column10"><%=nombre%></td>
+                                                                    <td class="column7"><%=fechaString%></td>
+                                                                    <td id="descripcion"><%=descripcion%></td>
+                                                                    <td class="column10"><%=destino%></td>
+                                                                    <td class="column12">$<%=costo%></td>
                                                             </tr>
                                                         <%}}%>
                                                     </tbody>
