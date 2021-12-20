@@ -91,6 +91,11 @@ a {
     justify-content: center;
 }
 
+.p-info {
+    font-size: small;
+    margin: 2px 0;
+}
+
 .boton-submit {
     width: 8vw;
     font-family: 'Poppins';

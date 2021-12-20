@@ -48,34 +48,46 @@ public class SvAltaVentasPaquetes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        listaPaquetes = controladora.traerPaquetes();
-        
+    
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fechaString = request.getParameter("fechaVenta");
         String medioPago;
         
-        String codigo;
-        int cantidadSeleccionados = 0;
-        Paquete paqIncluido = new Paquete();
+        Paquete paqIncluido = null;
+        double costoTotal;
         
-        for (Paquete paq : listaPaquetes) {
-            if (paq.isHabilitado() && (cantidadSeleccionados < 2)) {
-                codigo = Integer.toString(paq.getCodigo_paquete());
-                if (request.getParameter(codigo) != null) {
-                    cantidadSeleccionados++;
-                    paqIncluido = paq;
-                }
-            }
+        if (request.getParameter("check") != null) {
+            paqIncluido = controladora.buscarPaquete(parseInt(request.getParameter("check")));
         }
-        if (cantidadSeleccionados != 1 || ((request.getParameter("clienteId")==null) || (request.getParameter("empleadoId") == null)) || fechaString.equals("")) {
+        
+        if (((request.getParameter("clienteId")==null) || (request.getParameter("empleadoId") == null)) || fechaString.equals("") || paqIncluido == null) {
             response.sendRedirect("ventas_alta_paquete.jsp");
         } else {
             medioPago = request.getParameter("medioPago");
+            switch(medioPago) {
+                case "efectivo" : 
+                    costoTotal = paqIncluido.getCosto_paquete();
+                    break;
+                case "debito" : 
+                    costoTotal = paqIncluido.getCosto_paquete()*1.03;
+                    break;
+                case "credito" : 
+                    costoTotal = paqIncluido.getCosto_paquete()*1.09;
+                    break;
+                case "monederoVirtual" : 
+                    costoTotal = paqIncluido.getCosto_paquete();
+                    break;
+                default :
+                    costoTotal = paqIncluido.getCosto_paquete()*1.0245;
+            }
+            // Truncamiento a dos decimales
+            costoTotal = costoTotal * Math.pow(10, 2);
+            costoTotal = Math.floor(costoTotal);
+            costoTotal = costoTotal / Math.pow(10, 2);
             Cliente cli = controladora.buscarCliente(parseInt(request.getParameter("clienteId")));
             Empleado emp = controladora.buscarEmpleado(parseInt(request.getParameter("empleadoId")));
             try {
-                controladora.crearVenta(paqIncluido,medioPago,sdf.parse(fechaString),cli,emp);
+                controladora.crearVenta(paqIncluido,medioPago,sdf.parse(fechaString),cli,emp,costoTotal);
             } catch (ParseException ex) {
                 Logger.getLogger(SvAltaVentasPaquetes.class.getName()).log(Level.SEVERE, null, ex);
             }

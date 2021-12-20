@@ -24,17 +24,27 @@
     </div>
     <div id="contenedor-general">
         <div id="barra-menu" class="flex-columna">
-            <a href="index.jsp" class="boton-menu">INICIO</a>
-            <a href="usuario.jsp" class="boton-menu">USUARIO</a>
-            <a href="ventas.jsp" class="boton-menu seleccionado">VENTAS</a>
-            <a href="servicios.jsp" class="boton-menu">SERVICIOS</a>
-            <a href="paquetes.jsp" class="boton-menu">PAQUETES</a>
+            <form action="SvRecaudaciones" method="GET">
+                <a href="SvRecaudaciones" class="boton-menu">INICIO</a>
+            </form>
+            <form action="SvVerVentas" method="GET">
+                <a href="SvVerVentas" class="boton-menu seleccionado">VENTAS</a>
+            </form>
+            <form action="SvVerServicios" method="GET">
+                <a href="SvVerServicios" class="boton-menu">SERVICIOS</a>
+            </form>
+            <form action="SvVerPaquetes" method="GET">
+                <a href="SvVerPaquetes" class="boton-menu">PAQUETES</a>
+            </form>
             <form action="SvVerEmpleados" method="GET">
                 <a href="SvVerEmpleados" class="boton-menu">EMPLEADOS</a>
             </form>
             <form action="SvVerClientes" method="GET">
                 <a href="SvVerClientes" class="boton-menu">CLIENTES</a>
-            </form> 
+            </form>
+            <form action="SvLoginUsuario" method="GET">
+                <a href="SvLoginUsuario" class="boton-menu">SESIÓN</a>
+            </form>
         </div>
         <div id="contenido-principal" >
             <div id="menu-seccion" class="flex-fila">
@@ -78,11 +88,13 @@
                                                 <th class="column10">Medio de pago</th>
                                                 <th class="column8">Cliente</th>
                                                 <th class="column8">Empleado</th>
+                                                <th class="column12">COSTO</th>
                                             </tr>
                                         </thead>
                                             <tbody>
                                             <%  String redireccionModificar, fechaString, medioPago, cliente = "", empleado = "", codServicio, codPaquete;
                                                 int id;
+                                                double costo = 0;
                                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
                                                 for (Venta ven : listaVentas) { %>
                                                 <tr class="row100 body">
@@ -102,6 +114,7 @@
                                                     cliente += " - ID " + ven.getCliente().getId_cliente();
                                                     empleado = ven.getUsuario().getEmpleado().getNombre() + " " + ven.getUsuario().getEmpleado().getApellido() ;
                                                     empleado += " - ID " + ven.getUsuario().getEmpleado().getId_empleado();
+                                                    costo = ven.getCostoTotal();
                                                     switch(ven.getMedio_pago()) {
                                                         case "efectivo" : 
                                                             medioPago = "Efectivo";
@@ -140,6 +153,7 @@
                                                     <td class="column10"><%=medioPago%></td>
                                                     <td class="column8"><%=cliente%></td>
                                                     <td class="column8"><%=empleado%></td>
+                                                    <td class="column12">$<%=costo%></td>
                                                 </tr>
                                                 <%}%>
                                             </tbody>

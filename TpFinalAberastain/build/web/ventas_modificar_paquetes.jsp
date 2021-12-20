@@ -29,17 +29,27 @@
     </div>
     <div id="contenedor-general">
         <div id="barra-menu" class="flex-columna">
-            <a href="index.jsp" class="boton-menu">INICIO</a>
-            <a href="usuario.jsp" class="boton-menu">USUARIO</a>
-            <a href="ventas.jsp" class="boton-menu seleccionado">VENTAS</a>
-            <a href="servicios.jsp" class="boton-menu">SERVICIOS</a>
-            <a href="paquetes.jsp" class="boton-menu">PAQUETES</a>
+            <form action="SvRecaudaciones" method="GET">
+                <a href="SvRecaudaciones" class="boton-menu">INICIO</a>
+            </form>
+            <form action="SvVerVentas" method="GET">
+                <a href="SvVerVentas" class="boton-menu seleccionado">VENTAS</a>
+            </form>
+            <form action="SvVerServicios" method="GET">
+                <a href="SvVerServicios" class="boton-menu">SERVICIOS</a>
+            </form>
+            <form action="SvVerPaquetes" method="GET">
+                <a href="SvVerPaquetes" class="boton-menu">PAQUETES</a>
+            </form>
             <form action="SvVerEmpleados" method="GET">
                 <a href="SvVerEmpleados" class="boton-menu">EMPLEADOS</a>
             </form>
             <form action="SvVerClientes" method="GET">
                 <a href="SvVerClientes" class="boton-menu">CLIENTES</a>
-            </form> 
+            </form>
+            <form action="SvLoginUsuario" method="GET">
+                <a href="SvLoginUsuario" class="boton-menu">SESIÓN</a>
+            </form>
         </div>
         <div id="contenido-principal" >
             <div>
@@ -75,7 +85,6 @@
                                             <thead>
                                                 <tr class="row100 head">
                                                     <th class="column2">Incluir</th>
-                                                    <th class="column4">Código</th>
                                                     <th class="listaElementos">Servicios incluidos</th>
                                                     <th class="column12">Costo</th>
                                                 </tr>
@@ -99,9 +108,8 @@
                                                         serviciosString = serviciosString.substring(0,serviciosString.length()-2);
                                                         costo = paq.getCosto_paquete(); %>
                                                         <td class="column2">
-                                                            <input type="checkbox" class="checkbox" name="<%=id%>" value="<%=id%>" <%=checked%>>
+                                                            <input type="radio" class="checkbox" name="check" value="<%=id%>" <%=checked%>>
                                                         </td>
-                                                        <td class="column4"><%=id%></td>
                                                         <td class="listaElementos"><%=serviciosString%></td>
                                                         <td class="column12">$<%=costo%></td>
                                                     </tr>
@@ -111,7 +119,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-columna contenedor-selectores">
+                            <div class="color-negro flex-columna contenedor-selectores">
                                 <label class="color-negro">Seleccionar medio de pago
                                     <%  String selected = ""; %>
                                     <select name="medioPago" class="selector"">
@@ -127,6 +135,11 @@
                                         <option value="transferencia" <%=selected%>>TRANSFERENCIA</option>
                                     </select>
                                 </label>
+                                <p class="p-info">Efectivo: Sin comisión</p>    
+                                <p class="p-info">Tarjeta de Débito: 3%</p>     
+                                <p class="p-info">Tarjeta de Crédito: 9%</p>
+                                <p class="p-info">Monedero Virtual: Sin comisión</p>     
+                                <p class="p-info">Transferencia: 2.45%</p>
                                     <%  String nombreIdCli, nombreIdEmp; %>
                                 <label class="color-negro">Seleccionar cliente
                                     <select name="clienteId" class="selector">
@@ -158,7 +171,6 @@
                                 <label class="color-negro">Seleccionar fecha<input type="date" name="fechaVenta" value="<%=sdf.format(venta.getFecha_venta())%>"></label>
                                 <input type="hidden" name="id" value="<%=venta.getNum_venta()%>">
                                 <button class="boton-submit" type="submit">MODIFICAR</button>
-                                <h3 class="color-negro">Debe seleccionarse un único paquete</h3>
                                 <h3 class="color-negro">Recuerde seleccionar todos los campos</h3>
                             </div>
                         </form>

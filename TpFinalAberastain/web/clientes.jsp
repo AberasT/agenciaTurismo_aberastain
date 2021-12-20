@@ -26,17 +26,27 @@
     </div>
     <div id="contenedor-general">
         <div id="barra-menu" class="flex-columna">
-            <a href="index.jsp" class="boton-menu">INICIO</a>
-            <a href="usuario.jsp" class="boton-menu">USUARIO</a>
-            <a href="ventas.jsp" class="boton-menu">VENTAS</a>
-            <a href="servicios.jsp" class="boton-menu">SERVICIOS</a>
-            <a href="paquetes.jsp" class="boton-menu">PAQUETES</a>
+            <form action="SvRecaudaciones" method="GET">
+                <a href="SvRecaudaciones" class="boton-menu">INICIO</a>
+            </form>
+            <form action="SvVerVentas" method="GET">
+                <a href="SvVerVentas" class="boton-menu">VENTAS</a>
+            </form>
+            <form action="SvVerServicios" method="GET">
+                <a href="SvVerServicios" class="boton-menu">SERVICIOS</a>
+            </form>
+            <form action="SvVerPaquetes" method="GET">
+                <a href="SvVerPaquetes" class="boton-menu">PAQUETES</a>
+            </form>
             <form action="SvVerEmpleados" method="GET">
                 <a href="SvVerEmpleados" class="boton-menu">EMPLEADOS</a>
             </form>
             <form action="SvVerClientes" method="GET">
                 <a href="SvVerClientes" class="boton-menu seleccionado">CLIENTES</a>
-            </form> 
+            </form>
+            <form action="SvLoginUsuario" method="GET">
+                <a href="SvLoginUsuario" class="boton-menu">SESIÓN</a>
+            </form>
         </div>
         <div id="contenido-principal" >
             <div id="menu-seccion" class="flex-fila">
@@ -66,76 +76,75 @@
                                             <td class="cell100 column1"><%=nombreComp%></td>
                                         </tr>
                                         <% }} %>
-                                    </tbody>
+                                        </tbody>
                                     </table>
-                            </div>
-                            <div class="wrap-table100-nextcols js-pscroll">
+                                </div>
+                                <div class="wrap-table100-nextcols js-pscroll">
                                     <div class="table100-nextcols">
-                                            <table>
-                                                    <thead>
-                                                            <tr class="row100 head">
-                                                                    <th class="cell100 column2">Modificar</th>
-                                                                    <th class="cell100 column3">Eliminar</th>
-                                                                    <th class="cell100 column4">ID</th>
-                                                                    <th class="cell100 column5">DNI</th>
-                                                                    <th class="cell100 column7">Fecha de nacimiento</th>
-                                                                    <th class="cell100 column8">Email</th>
-                                                                    <th class="cell100 column9">Celular</th>
-                                                                    <th class="cell100 column10">Direccion</th>
-                                                                    <th class="cell100 column11">Nacionalidad</th>
-                                                            </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <%  String dni, email, celular, direccion, nacionalidad;
-                                                            int id;
-                                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
-                                                            for (Cliente cli : listaClientes) { 
-                                                                if (cli.isHabilitado()) {%>
-                                                            <tr class="row100 body">
-                                                                <%  id = cli.getId_cliente();
-                                                                    dni = cli.getDni();
-                                                                    String fechaString = sdf.format(cli.getFecha_nac());
-                                                                    email = cli.getEmail();
-                                                                    celular = cli.getCelular();
-                                                                    direccion = cli.getDireccion();
-                                                                    nacionalidad = cli.getNacionalidad(); %>
-                                                                    <td class="cell100 column2">
-                                                                        <form name="formModificarCliente" action="SvModificarCliente" method="POST">
-                                                                            <input type="hidden" name="id" value="<%=id%>">
-                                                                            <button class="boton-tabla boton-modif">
-                                                                                <img src="./img/modificar.png" alt="modif"/>
-                                                                            </button>
-                                                                        </form>
-                                                                    </td>
-                                                                    <td class="cell100 column3">
-                                                                        <form name="formEliminarCliente" action="SvEliminarCliente" method="GET" onsubmit="return confirm('Eliminar cliente?')")>
-                                                                            <input type="hidden" name="id" value="<%=id%>">
-                                                                            <button type="submit" class="boton-tabla boton-elim">
-                                                                                <img src="./img/eliminar.png" alt="elim"/>
-                                                                            </button>
-                                                                        </form>
-                                                                    </td>
-                                                                    <td class="cell100 column4"><%=id%></td>
-                                                                    <td class="cell100 column5"><%=dni%></td>
-                                                                    <td class="cell100 column7"><%=fechaString%></td>
-                                                                    <td class="cell100 column8"><%=email%></td>
-                                                                    <td class="cell100 column9"><%=celular%></td>
-                                                                    <td class="cell100 column10"><%=direccion%></td>
-                                                                    <td class="cell100 column11"><%=nacionalidad%></td>
-                                                            </tr>
-                                                        <%}}%>
-                                                    </tbody>
-                                            </table>
+                                        <table>
+                                            <thead>
+                                                    <tr class="row100 head">
+                                                            <th class="cell100 column2">Modificar</th>
+                                                            <th class="cell100 column3">Eliminar</th>
+                                                            <th class="cell100 column4">ID</th>
+                                                            <th class="cell100 column5">DNI</th>
+                                                            <th class="cell100 column7">Fecha de nacimiento</th>
+                                                            <th class="cell100 column8">Email</th>
+                                                            <th class="cell100 column9">Celular</th>
+                                                            <th class="cell100 column10">Direccion</th>
+                                                            <th class="cell100 column11">Nacionalidad</th>
+                                                    </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%  String dni, email, celular, direccion, nacionalidad;
+                                                    int id;
+                                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+                                                    for (Cliente cli : listaClientes) { 
+                                                        if (cli.isHabilitado()) {%>
+                                                    <tr class="row100 body">
+                                                        <%  id = cli.getId_cliente();
+                                                            dni = cli.getDni();
+                                                            String fechaString = sdf.format(cli.getFecha_nac());
+                                                            email = cli.getEmail();
+                                                            celular = cli.getCelular();
+                                                            direccion = cli.getDireccion();
+                                                            nacionalidad = cli.getNacionalidad(); %>
+                                                            <td class="cell100 column2">
+                                                                <form name="formModificarCliente" action="SvModificarCliente" method="POST">
+                                                                    <input type="hidden" name="id" value="<%=id%>">
+                                                                    <button class="boton-tabla boton-modif">
+                                                                        <img src="./img/modificar.png" alt="modif"/>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                            <td class="cell100 column3">
+                                                                <form name="formEliminarCliente" action="SvEliminarCliente" method="GET" onsubmit="return confirm('Eliminar cliente?')")>
+                                                                    <input type="hidden" name="id" value="<%=id%>">
+                                                                    <button type="submit" class="boton-tabla boton-elim">
+                                                                        <img src="./img/eliminar.png" alt="elim"/>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                            <td class="cell100 column4"><%=id%></td>
+                                                            <td class="cell100 column5"><%=dni%></td>
+                                                            <td class="cell100 column7"><%=fechaString%></td>
+                                                            <td class="cell100 column8"><%=email%></td>
+                                                            <td class="cell100 column9"><%=celular%></td>
+                                                            <td class="cell100 column10"><%=direccion%></td>
+                                                            <td class="cell100 column11"><%=nacionalidad%></td>
+                                                    </tr>
+                                                <%}}%>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                </div>
                             </div>
+                        </div>
                     </div>
-            </div>
-            </div>
-    </div>
+                </div>
             </div>
         </div>
     </div>
-    <script src="./assets/script.js"></script>
     <% } %>
 </body>
 </html>

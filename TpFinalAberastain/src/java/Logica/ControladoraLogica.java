@@ -4,8 +4,6 @@ import Persistencia.ControladoraPersistencia;
 import java.util.Date;
 import java.util.List;
 
-//// SEPARADORES PARA CADA CLASE
-
 public class ControladoraLogica {
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
 
@@ -24,6 +22,14 @@ public class ControladoraLogica {
         return false;
     }
     
+    public Usuario buscarUsuarioPorEmpleado(Empleado emp) {
+        Usuario usuBuscado = null;
+        List<Usuario> listaUsuarios = controlPersis.traerUsuarios();
+        for (Usuario usu : listaUsuarios) {
+            if (emp.getId_empleado() == usu.getEmpleado().getId_empleado()) usuBuscado = usu;
+        }
+        return usuBuscado;
+    }
     
     // EMPLEADOS
     public void crearEmpleado(String nombre, String apellido, String direccion, String dni, Date fechaNacimiento, String nacionalidad, String celular, String email, String cargo, double sueldo, String nombreUsuario, String contrasenia) {
@@ -59,38 +65,9 @@ public class ControladoraLogica {
         emp.setHabilitado(false);
         controlPersis.modificarEmpleado(emp);
     }
-    
-    public List<Cliente> traerClientes() {
-        return controlPersis.traerClientes();
-    }
-
-    public void crearCliente(String nombre, String apellido, String direccion, String dni, Date fechaNacimiento, String nacionalidad, String celular, String email) {
-        Cliente cliente = new Cliente();
-        
-        cliente.setNombre(nombre);
-        cliente.setApellido(apellido);
-        cliente.setDireccion(direccion);
-        cliente.setDni(dni);
-        cliente.setFecha_nac(fechaNacimiento);
-        cliente.setNacionalidad(nacionalidad);
-        cliente.setCelular(celular);
-        cliente.setEmail(email);
-        cliente.setHabilitado(true);
-
-        controlPersis.crearCliente(cliente);
-    }
 
     public Empleado buscarEmpleado(int id) {
         return controlPersis.buscarEmpleado(id);
-    }
-
-    public Usuario buscarUsuarioPorEmpleado(Empleado emp) {
-        Usuario usuBuscado = null;
-        List<Usuario> listaUsuarios = controlPersis.traerUsuarios();
-        for (Usuario usu : listaUsuarios) {
-            if (emp.getId_empleado() == usu.getEmpleado().getId_empleado()) usuBuscado = usu;
-        }
-        return usuBuscado;
     }
 
     public void modificarEmpleado(int id, String nombre, String apellido, String direccion, String dni, Date fechaNacimiento, String nacionalidad, String celular, String email, String cargo, double sueldo, String nombreUsuario, String contrasenia) {
@@ -115,9 +92,31 @@ public class ControladoraLogica {
         usuario.setHabilitado(true);
         controlPersis.modificarEmpleado(empleado,usuario);
     }
+    
+    // CLIENTES
 
     public Cliente buscarCliente(int id) {
         return controlPersis.buscarCliente(id);
+    }
+    
+    public List<Cliente> traerClientes() {
+        return controlPersis.traerClientes();
+    }
+
+    public void crearCliente(String nombre, String apellido, String direccion, String dni, Date fechaNacimiento, String nacionalidad, String celular, String email) {
+        Cliente cliente = new Cliente();
+        
+        cliente.setNombre(nombre);
+        cliente.setApellido(apellido);
+        cliente.setDireccion(direccion);
+        cliente.setDni(dni);
+        cliente.setFecha_nac(fechaNacimiento);
+        cliente.setNacionalidad(nacionalidad);
+        cliente.setCelular(celular);
+        cliente.setEmail(email);
+        cliente.setHabilitado(true);
+
+        controlPersis.crearCliente(cliente);
     }
 
     public void modificarCliente(int id, String nombre, String apellido, String direccion, String dni, Date fechaNacimiento, String nacionalidad, String celular, String email) {
@@ -220,30 +219,32 @@ public class ControladoraLogica {
         controlPersis.modificarPaquete(paq);
     }
     
-    //VENTAS
+    // VENTAS
 
     public List<Venta> traerVentas() {
         return controlPersis.traerVentas();
     }
 
-    public void crearVenta(Paquete paqIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp) {
+    public void crearVenta(Paquete paqIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp, double costo) {
         Venta ven = new Venta();
         ven.setPaquete(paqIncluido);
         ven.setMedio_pago(medioPago);
         ven.setFecha_venta(fecha_venta);
         ven.setCliente(cli);
         ven.setUsuario(buscarUsuarioPorEmpleado(emp));
+        ven.setCostoTotal(costo);
         
         controlPersis.crearVenta(ven);
     }
 
-    public void crearVenta(Servicio serIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp) {
+    public void crearVenta(Servicio serIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp, double costo) {
         Venta ven = new Venta();
         ven.setServicio(serIncluido);
         ven.setMedio_pago(medioPago);
         ven.setFecha_venta(fecha_venta);
         ven.setCliente(cli);
         ven.setUsuario(buscarUsuarioPorEmpleado(emp));
+        ven.setCostoTotal(costo);
         
         controlPersis.crearVenta(ven);
     }
@@ -256,24 +257,26 @@ public class ControladoraLogica {
         return controlPersis.buscarVenta(id);
     }
 
-    public void modificarVenta(int id, Paquete paqIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp) {
+    public void modificarVenta(int id, Paquete paqIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp, double costo) {
         Venta ven = buscarVenta(id);
         ven.setPaquete(paqIncluido);
         ven.setMedio_pago(medioPago);
         ven.setFecha_venta(fecha_venta);
         ven.setCliente(cli);
         ven.setUsuario(buscarUsuarioPorEmpleado(emp));
+        ven.setCostoTotal(costo);
         
         controlPersis.modificarVenta(ven);
     }
 
-    public void modificarVenta(int id, Servicio serIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp) {
+    public void modificarVenta(int id, Servicio serIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp, double costo) {
         Venta ven = buscarVenta(id);
         ven.setServicio(serIncluido);
         ven.setMedio_pago(medioPago);
         ven.setFecha_venta(fecha_venta);
         ven.setCliente(cli);
         ven.setUsuario(buscarUsuarioPorEmpleado(emp));
+        ven.setCostoTotal(costo);
         
         controlPersis.modificarVenta(ven);
     }

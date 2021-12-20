@@ -21,7 +21,7 @@ public class VentaJpaController implements Serializable {
     
     public VentaJpaController() {
         emf = Persistence.createEntityManagerFactory("TpFinalAberastainPU");
-    }
+    } 
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();

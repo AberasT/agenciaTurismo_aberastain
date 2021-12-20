@@ -21,17 +21,27 @@
     </div>
     <div id="contenedor-general">
         <div id="barra-menu" class="flex-columna">
-            <a href="index.jsp" class="boton-menu">INICIO</a>
-            <a href="usuario.jsp" class="boton-menu">USUARIO</a>
-            <a href="ventas.jsp" class="boton-menu">VENTAS</a>
-            <a href="servicios.jsp" class="boton-menu seleccionado">SERVICIOS</a>
-            <a href="paquetes.jsp" class="boton-menu">PAQUETES</a>
+            <form action="SvRecaudaciones" method="GET">
+                <a href="SvRecaudaciones" class="boton-menu">INICIO</a>
+            </form>
+            <form action="SvVerVentas" method="GET">
+                <a href="SvVerVentas" class="boton-menu">VENTAS</a>
+            </form>
+            <form action="SvVerServicios" method="GET">
+                <a href="SvVerServicios" class="boton-menu seleccionado">SERVICIOS</a>
+            </form>
+            <form action="SvVerPaquetes" method="GET">
+                <a href="SvVerPaquetes" class="boton-menu">PAQUETES</a>
+            </form>
             <form action="SvVerEmpleados" method="GET">
                 <a href="SvVerEmpleados" class="boton-menu">EMPLEADOS</a>
             </form>
-            <form action="SvCliente" method="GET">
-                <a href="SvCliente" class="boton-menu">CLIENTES</a>
-            </form> 
+            <form action="SvVerClientes" method="GET">
+                <a href="SvVerClientes" class="boton-menu">CLIENTES</a>
+            </form>
+            <form action="SvLoginUsuario" method="GET">
+                <a href="SvLoginUsuario" class="boton-menu">SESIÓN</a>
+            </form>
         </div>
         <div class="contenido-principal">
             <div class="contenedor-formulario">

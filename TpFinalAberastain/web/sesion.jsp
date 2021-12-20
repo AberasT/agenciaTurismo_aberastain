@@ -15,7 +15,9 @@
     </div>
     <div id="contenedor-general">
         <div id="barra-menu" class="flex-columna">
-            <a href="index.jsp" class="boton-menu">INICIO</a>
+            <form action="SvRecaudaciones" method="GET">
+                <a href="SvRecaudaciones" class="boton-menu">INICIO</a>
+            </form>
             <form action="SvVerVentas" method="GET">
                 <a href="SvVerVentas" class="boton-menu">VENTAS</a>
             </form>
