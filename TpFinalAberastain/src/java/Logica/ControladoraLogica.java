@@ -12,6 +12,20 @@ public class ControladoraLogica {
     public ControladoraLogica() {
     }
 
+    // USUARIOS
+    public boolean verificarUsuario(String user, String contra) {
+        List<Usuario> listaUsuarios = controlPersis.traerUsuarios();
+        
+        if (listaUsuarios != null) {
+            for (Usuario usu : listaUsuarios) {
+                if ((usu.getNombre_usuario().equals(user)) && (usu.getContrasenia().equals(contra))) return true; 
+            }
+        }
+        return false;
+    }
+    
+    
+    // EMPLEADOS
     public void crearEmpleado(String nombre, String apellido, String direccion, String dni, Date fechaNacimiento, String nacionalidad, String celular, String email, String cargo, double sueldo, String nombreUsuario, String contrasenia) {
         Empleado empleado = new Empleado();
         Usuario usuario = new Usuario();

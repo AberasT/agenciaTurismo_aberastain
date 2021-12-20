@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
+    <%
+    HttpSession sesion = request.getSession();
+    String user = (String) sesion.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect("sesion.jsp");
+    } else { %>
     <div id="barra-info" class="flex-fila">
         <h2>AGENCIA DE TURISMO</h2>
         <a class="flex-fila" href="https://github.com/AberasT" target="_blank">github.com/AberasT<img id="imagen-gh" src="img/github_white.png"></a>
@@ -50,7 +56,7 @@
             </div>
         </div>
     </div>
-
     <script src="./assets/script.js"></script>
+    <%} %>
 </body>
 </html>

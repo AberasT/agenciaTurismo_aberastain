@@ -17,6 +17,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
+    <%
+    HttpSession sesion = request.getSession();
+    String user = (String) sesion.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect("sesion.jsp");
+    } else { %>
     <div id="barra-info" class="flex-fila">
         <h2>AGENCIA DE TURISMO</h2>
         <a class="flex-fila" href="https://github.com/AberasT" target="_blank">github.com/AberasT<img id="imagen-gh" src="img/github_white.png"></a>
@@ -38,8 +44,7 @@
         <div class="contenido-principal">
             <div class="contenedor-formulario">
                 <form class="flex-columna" action="SvModificarCliente" method="GET">
-                    <%  HttpSession sesion = request.getSession();
-                        Cliente cli = (Cliente) sesion.getAttribute("cliente");
+                    <%  Cliente cli = (Cliente) sesion.getAttribute("cliente");
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
                         String fechaString = sdf.format(cli.getFecha_nac());%>
                     <h2>Formulario de modificación</h2>
@@ -59,7 +64,7 @@
             </div>
         </div>
     </div>
-
     <script src="./assets/script.js"></script>
+    <%} %>
 </body>
 </html>
