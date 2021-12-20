@@ -19,7 +19,7 @@ public class SvLoginUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("sesion.jsp");
+        response.sendRedirect("login.jsp");
     }
 
     @Override
@@ -38,7 +38,7 @@ public class SvLoginUsuario extends HttpServlet {
             
             response.sendRedirect("index.jsp");
         } else {
-            response.sendRedirect("sesion.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 

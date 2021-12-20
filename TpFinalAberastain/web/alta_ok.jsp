@@ -13,7 +13,7 @@
     HttpSession sesion = request.getSession();
     String user = (String) sesion.getAttribute("user");
     if (user == null) {
-        response.sendRedirect("sesion.jsp");
+        response.sendRedirect("login.jsp");
     } else { %>
     <div id="barra-info" class="flex-fila">
         <h2>AGENCIA DE TURISMO</h2>
@@ -44,7 +44,6 @@
             </form>
         </div>
         <div id="contenido-principal">
-            
         </div>
     </div>
     <script>alert("El alta se realizó correctamente");</script>

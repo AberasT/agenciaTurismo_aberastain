@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
+    <%
+    HttpSession sesion = request.getSession();
+    String user = (String) sesion.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect("login.jsp");
+    } else { %>
     <div id="barra-info" class="flex-fila">
         <h2>AGENCIA DE TURISMO</h2>
         <a class="flex-fila" href="https://github.com/AberasT" target="_blank">github.com/AberasT<img id="imagen-gh" src="img/github_white.png"></a>
@@ -16,7 +22,7 @@
     <div id="contenedor-general">
         <div id="barra-menu" class="flex-columna">
             <form action="SvRecaudaciones" method="GET">
-                <a href="SvRecaudaciones" class="boton-menu">INICIO</a>
+                <a href="SvRecaudaciones" class="boton-menu">GANANCIAS</a>
             </form>
             <form action="SvVerVentas" method="GET">
                 <a href="SvVerVentas" class="boton-menu">VENTAS</a>
@@ -33,23 +39,19 @@
             <form action="SvVerClientes" method="GET">
                 <a href="SvVerClientes" class="boton-menu">CLIENTES</a>
             </form>
-            <form action="SvLoginUsuario" method="GET">
-                <a href="SvLoginUsuario" class="boton-menu seleccionado">SESIÓN</a>
-            </form>
+            <a href="sesion.jsp" class="boton-menu seleccionado">SESIÓN</a>
         </div>
         <div id="contenido-principal">
             <div class="contenedor-formulario">
                 <form action="SvLoginUsuario" method="POST" class="flex-columna" id="form-login">
-                    <h2 class="color-negro">Inicio de sesión</h2>
+                    <h2 class="color-negro">Sesión iniciada</h2>
                     <div>
-                        <p class="flex-fila">Nombre de usuario<input type="text" name="user" placeholder="Ingresar nombre de usuario"></p>
-                        <p class="flex-fila">Contraseña<input type="password" name="contra" placeholder="Ingresar contraseña"></p> 
+                        <p class="flex-fila">Nombre de usuario <%=user%></p>
                     </div>
-                    <button type="submit" class="boton-submit">INICIAR SESIÓN</button>
                 </form>
             </div>
         </div>
     </div>
-    <script src="./assets/script.js"></script>
+    <% } %>
 </body>
 </html>

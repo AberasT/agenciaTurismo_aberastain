@@ -20,7 +20,7 @@
         HttpSession sesion = request.getSession();
         String user = (String) sesion.getAttribute("user");
         if (user == null) {
-            response.sendRedirect("sesion.jsp");
+            response.sendRedirect("login.jsp");
         } else { %>
     <div id="barra-info" class="flex-fila">
         <h2>AGENCIA DE TURISMO</h2>
@@ -46,9 +46,7 @@
             <form action="SvVerClientes" method="GET">
                 <a href="SvVerClientes" class="boton-menu">CLIENTES</a>
             </form>
-            <form action="SvLoginUsuario" method="GET">
-                <a href="SvLoginUsuario" class="boton-menu">SESIÓN</a>
-            </form>
+            <a href="sesion.jsp" class="boton-menu">SESIÓN</a>
         </div>
         <%  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
             Date fechaInf = (Date) sesion.getAttribute("fechaInf");
@@ -170,7 +168,6 @@
             </div>
         </div>
     </div>
-    <script src="./assets/script.js"></script>
     <% } %>
 </body>
 </html>

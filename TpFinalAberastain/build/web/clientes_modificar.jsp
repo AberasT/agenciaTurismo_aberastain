@@ -1,9 +1,3 @@
-<%-- 
-    Document   : clientes_modificar
-    Created on : 17 dic. 2021, 18:15:01
-    Author     : Álvaro
---%>
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Logica.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,7 +15,7 @@
     HttpSession sesion = request.getSession();
     String user = (String) sesion.getAttribute("user");
     if (user == null) {
-        response.sendRedirect("sesion.jsp");
+        response.sendRedirect("login.jsp");
     } else { %>
     <div id="barra-info" class="flex-fila">
         <h2>AGENCIA DE TURISMO</h2>
@@ -30,7 +24,7 @@
     <div id="contenedor-general">
         <div id="barra-menu" class="flex-columna">
             <form action="SvRecaudaciones" method="GET">
-                <a href="SvRecaudaciones" class="boton-menu">INICIO</a>
+                <a href="SvRecaudaciones" class="boton-menu">GANANCIAS</a>
             </form>
             <form action="SvVerVentas" method="GET">
                 <a href="SvVerVentas" class="boton-menu">VENTAS</a>
@@ -47,9 +41,7 @@
             <form action="SvVerClientes" method="GET">
                 <a href="SvVerClientes" class="boton-menu seleccionado">CLIENTES</a>
             </form>
-            <form action="SvLoginUsuario" method="GET">
-                <a href="SvLoginUsuario" class="boton-menu">SESIÓN</a>
-            </form>
+            <a href="sesion.jsp" class="boton-menu">SESIÓN</a>
         </div>
         <div class="contenido-principal">
             <div class="contenedor-formulario">
@@ -74,7 +66,6 @@
             </div>
         </div>
     </div>
-    <script src="./assets/script.js"></script>
     <%} %>
 </body>
 </html>

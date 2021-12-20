@@ -18,7 +18,7 @@
     HttpSession miSesion = request.getSession();
     String user = (String) miSesion.getAttribute("user");
     if (user == null) {
-        response.sendRedirect("sesion.jsp");
+        response.sendRedirect("login.jsp");
     } else { %>
     <div id="barra-info" class="flex-fila">
         <h2>AGENCIA DE TURISMO</h2>
@@ -27,7 +27,7 @@
     <div id="contenedor-general">
         <div id="barra-menu" class="flex-columna">
             <form action="SvRecaudaciones" method="GET">
-                <a href="SvRecaudaciones" class="boton-menu ">INICIO</a>
+                <a href="SvRecaudaciones" class="boton-menu ">GANANCIAS</a>
             </form>
             <form action="SvVerVentas" method="GET">
                 <a href="SvVerVentas" class="boton-menu">VENTAS</a>
@@ -44,9 +44,7 @@
             <form action="SvVerClientes" method="GET">
                 <a href="SvVerClientes" class="boton-menu">CLIENTES</a>
             </form>
-            <form action="SvLoginUsuario" method="GET">
-                <a href="SvLoginUsuario" class="boton-menu">SESIÓN</a>
-            </form>
+            <a href="sesion.jsp" class="boton-menu">SESIÓN</a>
         </div>
         <div id="contenido-principal" >
             <div id="menu-seccion" class="flex-fila">
@@ -62,7 +60,7 @@
                                     <table>
                                         <thead>
                                             <tr class="row100 head">
-                                                <th class="column1">Empleados</th>
+                                                <th class="column1">Empleado</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -152,7 +150,6 @@
             </div>
         </div>
     </div>
-    <script src="./assets/script.js"></script>
     <%}%>
 </body>
 </html>
