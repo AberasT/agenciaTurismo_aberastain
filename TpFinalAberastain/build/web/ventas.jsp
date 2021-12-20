@@ -77,7 +77,7 @@
                                             </tr>
                                         </thead>
                                             <tbody>
-                                            <%  String fechaString, medioPago, cliente = "", empleado = "", codServicio, codPaquete;
+                                            <%  String redireccionModificar, fechaString, medioPago, cliente = "", empleado = "", codServicio, codPaquete;
                                                 int id;
                                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
                                                 for (Venta ven : listaVentas) { %>
@@ -85,11 +85,14 @@
                                                 <%  id = ven.getNum_venta();
                                                     if (ven.getServicio() == null) {
                                                         codPaquete = String.valueOf(ven.getPaquete().getCodigo_paquete());
+                                                        redireccionModificar = "SvModificarVentaPaquete";
                                                         codServicio = "-";
                                                     } else {
                                                         codServicio = String.valueOf(ven.getServicio().getCodigo());
+                                                        redireccionModificar = "SvModificarVentaServicio";
                                                         codPaquete = "-";
                                                     }
+                                                    
                                                     fechaString = sdf.format(ven.getFecha_venta());
                                                     cliente = ven.getCliente().getNombre() + " " + ven.getCliente().getApellido() ;
                                                     cliente += " - ID " + ven.getCliente().getId_cliente();
@@ -112,7 +115,7 @@
                                                             medioPago = "Transferencia";
                                                     }%>
                                                     <td class="cell100 column2">
-                                                        <form name="formModificarVenta" action="SvModificarVenta" method="POST">
+                                                        <form name="formModificarVenta" action="<%=redireccionModificar%>" method="POST">
                                                             <input type="hidden" name="id" value="<%=id%>">
                                                             <button class="boton-tabla boton-modif">
                                                                 <img src="./img/modificar.png" alt="modif"/>

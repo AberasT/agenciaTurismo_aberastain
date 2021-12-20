@@ -153,4 +153,11 @@ public class ControladoraPersistencia {
         }
     }
 
+    public void modificarVenta(Venta ven) {
+        try {
+            ventaJpa.edit(ven);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

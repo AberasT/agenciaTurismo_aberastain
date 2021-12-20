@@ -238,8 +238,19 @@ public class ControladoraLogica {
         controlPersis.eliminarVenta(id);
     }
 
-    private Venta buscarVenta(int id) {
+    public Venta buscarVenta(int id) {
         return controlPersis.buscarVenta(id);
+    }
+
+    public void modificarVenta(int id, Paquete paqIncluido, String medioPago, Date fecha_venta, Cliente cli, Empleado emp) {
+        Venta ven = buscarVenta(id);
+        ven.setPaquete(paqIncluido);
+        ven.setMedio_pago(medioPago);
+        ven.setFecha_venta(fecha_venta);
+        ven.setCliente(cli);
+        ven.setUsuario(buscarUsuarioPorEmpleado(emp));
+        
+        controlPersis.modificarVenta(ven);
     }
 
 }
