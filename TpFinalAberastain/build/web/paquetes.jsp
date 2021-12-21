@@ -47,9 +47,8 @@
         <div id="contenido-principal" >
             <div id="menu-seccion" class="flex-fila">
                 <form action="SvAltaPaquete" method="GET">
-                    <a href="SvAltaPaquete">ALTA</a>
+                    <a href="SvAltaPaquete">NUEVO PAQUETE</a>
                 </form>
-                <label>BUSCAR<input type="text"></label>
             </div>
             <div>
               <div class="limiter">

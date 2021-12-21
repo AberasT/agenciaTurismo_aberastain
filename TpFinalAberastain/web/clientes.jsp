@@ -48,8 +48,7 @@
         </div>
         <div id="contenido-principal" >
             <div id="menu-seccion" class="flex-fila">
-                <a href="clientes_alta.jsp">ALTA</a>
-                <label>BUSCAR<input type="text"></label>
+                <a href="clientes_alta.jsp">NUEVO CLIENTE</a>
             </div>
             <div>
               <div class="limiter">

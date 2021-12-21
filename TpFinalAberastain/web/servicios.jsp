@@ -47,8 +47,7 @@
         </div>
         <div id="contenido-principal" >
             <div id="menu-seccion" class="flex-fila">
-                <a href="servicios_alta.jsp">ALTA</a>
-                <label>BUSCAR<input type="text"></label>
+                <a href="servicios_alta.jsp">NUEVO SERVICIO</a>
             </div>
             <div>
               <div class="limiter">

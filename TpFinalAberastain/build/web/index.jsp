@@ -55,6 +55,7 @@
         <div id="contenido-principal">
             <div class="contenedor-formulario">
                 <form class="flex-columna" action="SvRecaudaciones" method="POST">
+                    <h2 class="color-negro">Consulta de ganancias</h2>
                     <p>Introducir fecha inferior<input type="date" name="fechaInf"></p>
                     <p>Introducir fecha superior<input type="date" name="fechaSup"></p>
                     <button type="submit" class="boton-submit">FILTRAR</button>

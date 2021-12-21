@@ -48,7 +48,6 @@
             <div id="menu-seccion" class="flex-fila">
                 <a href="SvAltaVentasServicios">VENDER SERVICIO</a>
                 <a href="SvAltaVentasPaquetes">VENDER PAQUETE</a>
-                <label>BUSCAR<input type="text"></label>
             </div>
             <div>
               <div class="limiter">
