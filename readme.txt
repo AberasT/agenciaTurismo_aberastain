@@ -1,5 +1,3 @@
-Video de presentación:
-
 
 Conexión con Apache Tomcat
 usuario:
@@ -8,9 +6,12 @@ contraseña:
 1234
 
 Base de datos
-agencia_turismo
+nombre bdd: agencia_turismo
 usuario: 
 root
 contraseña: 
 (vacío)
+
+Supuestos:
+-Sin límite de cantidad de servicios en un paquete
 

@@ -43,11 +43,12 @@
         </div>
         <div id="contenido-principal">
             <div class="contenedor-formulario">
-                <form class="flex-columna">
+                <form action="SvCerrarSesion" method="POST" class="flex-columna">
                     <h2 class="color-negro">Sesión iniciada</h2>
                     <div>
                         <p class="flex-fila">Nombre de usuario <%=user%></p>
                     </div>
+                    <button type="submit" class="boton-submit">CERRAR SESIÓN</button>
                 </form>
             </div>
         </div>
